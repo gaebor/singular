@@ -1,7 +1,5 @@
-# Author: Karl Stratos (stratos@cs.columbia.edu)
-
 # Compiler.
-CC = clang++
+CC = g++
 
 # Warning level.
 WARN = -Wall
@@ -17,11 +15,6 @@ EIGEN = third_party/eigen-eigen-36fd1ba04c12
 
 # Compiler flags
 CFLAGS = $(WARN) $(OPT) -pthread -std=c++11
-UNAME := $(shell uname)
-ifeq ($(UNAME), Darwin)
-# Tested on Apple (Darwin) clang version 4.0 (based on LLVM 3.1svn)
-	CFLAGS += -stdlib=libc++
-endif
 
 # Extract object filenames by substituting ".cc" to ".o" in source filenames.
 files = $(subst .cc,.o,$(shell ls *.cc) $(shell ls src/*.cc))

@@ -86,7 +86,7 @@ public:
 };
 
 // Assert macro that allows adding a message to an assertion upon failure. It
-// implictly performs string conversion: ASSERT(x > 0, "Negative x: " << x);
+// implicitly performs string conversion: ASSERT(x > 0, "Negative x: " << x);
 #ifndef NDEBUG
 #   define ASSERT(condition, message) \
     do { \

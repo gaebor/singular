@@ -3,7 +3,7 @@
 #include "util.h"
 
 #include <algorithm>
-#include <dirent.h>
+#include "dirent.h"
 #include <math.h>
 #include <random>
 #include <sys/stat.h>

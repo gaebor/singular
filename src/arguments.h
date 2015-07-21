@@ -12,6 +12,7 @@ using namespace std;
 
 class ArgumentProcessor {
 public:
+	ArgumentProcessor();
     // Parse the command line strings into arguments.
     void ParseArguments(int argc, char* argv[]);
 
@@ -62,50 +63,52 @@ public:
     bool verbose() { return verbose_; }
 
 private:
+	void initMembers();
+private:
     // Path to a corpus.
     string corpus_path_;
 
     // Output directory.
     string output_directory_;
 
-    // Recompute counts from scratch.
-    bool from_scratch_ = false;
+	// Recompute counts from scratch.
+	bool from_scratch_;
 
-    // Rare word cutoff.
-    size_t rare_cutoff_ = 10;
+	// Rare word cutoff.
+	size_t rare_cutoff_;
 
-    // Have a sentence per line in the text corpus?
-    bool sentence_per_line_ = false;
+	// Have a sentence per line in the text corpus?
+	bool sentence_per_line_;
 
-    // Size of the context window.
-    size_t window_size_ = 11;
+	// Size of the context window.
+	size_t window_size_;
 
-    // Context definition.
-    string context_definition_ = "bag";
+	// Context definition.
+	string context_definition_;
 
-    // Target dimension of word vectors.
-    size_t dim_ = 500;
+	// Target dimension of word vectors.
+	size_t dim_;
 
-    // Data transformation method.
-    string transformation_method_ = "sqrt";
+	// Data transformation method.
+	string transformation_method_;
 
-    // Scaling method.
-    string scaling_method_ = "cca";
+	// Scaling method.
+	string scaling_method_;
 
-    // Number of context types to hash (0 means no hashing).
-    size_t num_context_hashed_ = 0;
+	// Number of context types to hash (0 means no hashing).
+	size_t num_context_hashed_;
 
-    // Pseudocount for smoothing.
-    size_t pseudocount_ = 0;
+	// Pseudocount for smoothing.
+	size_t pseudocount_;
 
-    // Context smoothing exponent.
-    double context_smoothing_exponent_ = 0.75;
+	// Context smoothing exponent.
+	double context_smoothing_exponent_;
 
-    // Singular value exponent.
-    double singular_value_exponent_ = 0.0;
+	// Singular value exponent.
+	double singular_value_exponent_;
 
-    // Print messages to stderr?
-    bool verbose_ = true;
+	// Print messages to stderr?
+	bool verbose_;
 };
 
 #endif  // ARGUMENTS_H_

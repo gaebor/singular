@@ -2,7 +2,7 @@
 
 #include "wordrep.h"
 
-#include <dirent.h>
+#include "dirent.h"
 #include <iomanip>
 #include <limits>
 #include <map>
@@ -928,4 +928,37 @@ string WordRep::Signature(size_t version) {
     }
 
     return signature;
+}
+
+WordRep::WordRep()
+{
+	initMembers();
+}
+
+WordRep::WordRep( const string &output_directory )
+{
+	initMembers();
+	SetOutputDirectory(output_directory);
+}
+
+const string WordRep::kRareString_ = "<?>";
+const string WordRep::kBufferString_ = "<!>";
+const string WordRep::kNGramGlueString_ = "<+>";
+const size_t WordRep::kMaxWordLength_ = 100;
+const size_t WordRep::kMaxSentenceLength_ = 1000;
+const double WordRep::kReportInterval_ = 0.1;
+
+void WordRep::initMembers()
+{
+	rare_cutoff_ = 1;
+	sentence_per_line_ = false;
+	window_size_ = 3;
+	context_definition_ = "bag";
+	transformation_method_ = "raw";
+	scaling_method_ = "cca";
+	num_context_hashed_ = 0;
+	pseudocount_ = 0;
+	context_smoothing_exponent_ = 0.75;
+	singular_value_exponent_ = 0.0;
+	verbose_ = true;
 }

@@ -6,6 +6,12 @@
 #include <limits>
 #include <stack>
 
+Greedo::Greedo()
+	: num_extra_tightening_(0)
+{
+
+}
+
 void Greedo::Cluster(const vector<Eigen::VectorXd> &ordered_points, size_t m) {
     size_t n = ordered_points.size();  // n = number of points.
     ASSERT(m <= n, "Number of clusters " << m << " is smaller than number of "

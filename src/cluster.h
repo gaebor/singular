@@ -18,6 +18,7 @@
 // pnn (Franti et al., 2000).
 class Greedo {
 public:
+	Greedo();
     // Performs agglomerative clustering over the given *ordered* points to
     // obtain a single hierarchy with m leaf nodes. The first m points will
     // serve as the initial m active clusters, and subsequent points will be
@@ -97,7 +98,7 @@ private:
 
     // Total number of tightening operations performed because lowerbounds were
     // not tight.
-    size_t num_extra_tightening_ = 0;
+    size_t num_extra_tightening_;
 
     // Mapping from a bit string to a set of clustered points.
     unordered_map<string, vector<size_t> > bit2cluster_;

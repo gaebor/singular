@@ -1,5 +1,5 @@
-# Mac:
-CC = clang -Wno-deprecated-writable-strings -O3
+
+CC = gcc -Wno-deprecated-writable-strings -O3
 
 LIBS=-lm
 OBJ=svdlib.o svdutil.o las2.o

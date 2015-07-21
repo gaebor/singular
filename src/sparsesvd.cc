@@ -162,3 +162,20 @@ void SparseSVDSolver::FreeSVDResult() {
 	svd_result_ = nullptr;
     }
 }
+
+SparseSVDSolver::SparseSVDSolver()
+{
+	initMembers();
+}
+
+SparseSVDSolver::SparseSVDSolver( const string &file_path )
+{
+	initMembers();
+	LoadSparseMatrix(file_path);
+}
+
+void SparseSVDSolver::initMembers()
+{
+	sparse_matrix_ = nullptr;
+	svd_result_ = nullptr;
+}

@@ -19,10 +19,10 @@ extern "C" {  // For using C code from C++ code.
 class SparseSVDSolver {
 public:
     // Initializes an empty SVD solver.
-    SparseSVDSolver() { }
+    SparseSVDSolver();
 
     // Initializes with a sparse matrix in a file.
-    SparseSVDSolver(const string &file_path) { LoadSparseMatrix(file_path); }
+    SparseSVDSolver(const string &file_path);
 
     // Cleans up memory at deletion.
     ~SparseSVDSolver();
@@ -96,11 +96,14 @@ public:
     void FreeSVDResult();
 
 private:
+	void initMembers();
+
+private:
     // Sparse matrix for SVD.
-    SMat sparse_matrix_ = nullptr;
+    SMat sparse_matrix_;
 
     // Result of the latest SVD computation.
-    SVDRec svd_result_ = nullptr;
+    SVDRec svd_result_;
 };
 
 #endif  // SPARSESVD_H

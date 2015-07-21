@@ -99,3 +99,50 @@ void ArgumentProcessor::ParseArguments(int argc, char* argv[]) {
 	exit(0);
     }
 }
+
+void ArgumentProcessor::initMembers()
+{
+	// Recompute counts from scratch.
+	from_scratch_ = false;
+
+	// Rare word cutoff.
+	rare_cutoff_ = 10;
+
+	// Have a sentence per line in the text corpus?
+	sentence_per_line_ = false;
+
+	// Size of the context window.
+	window_size_ = 11;
+
+	// Context definition.
+	context_definition_ = "bag";
+
+	// Target dimension of word vectors.
+	dim_ = 500;
+
+	// Data transformation method.
+	transformation_method_ = "sqrt";
+
+	// Scaling method.
+	scaling_method_ = "cca";
+
+	// Number of context types to hash (0 means no hashing).
+	num_context_hashed_ = 0;
+
+	// Pseudocount for smoothing.
+	pseudocount_ = 0;
+
+	// Context smoothing exponent.
+	context_smoothing_exponent_ = 0.75;
+
+	// Singular value exponent.
+	singular_value_exponent_ = 0.0;
+
+	// Print messages to stderr?
+	verbose_ = true;
+}
+
+ArgumentProcessor::ArgumentProcessor()
+{
+	initMembers();
+}

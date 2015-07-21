@@ -20,12 +20,10 @@ typedef size_t Context;
 class WordRep {
 public:
     // Initializes empty.
-    WordRep() { }
+    WordRep();
 
     // Initializes with an output directory.
-    WordRep(const string &output_directory) {
-	SetOutputDirectory(output_directory);
-    }
+    WordRep(const string &output_directory);
 
     ~WordRep() { }
 
@@ -260,22 +258,22 @@ private:
     ofstream log_;
 
     // Special string for representing rare words.
-    const string kRareString_ = "<?>";
+   static const string kRareString_;
 
     // Special string for representing the out-of-sentence buffer.
-    const string kBufferString_ = "<!>";
+    static const string kBufferString_;
 
     // Special string for glueing words to n-gram features.
-    const string kNGramGlueString_ = "<+>";
+    static const string kNGramGlueString_;
 
     // Maximum word length to consider.
-    const size_t kMaxWordLength_ = 100;
+    static const size_t kMaxWordLength_;
 
     // Maximum sentence length to consider.
-    const size_t kMaxSentenceLength_ = 1000;
+    static const size_t kMaxSentenceLength_;
 
     // Interval to report progress.
-    const double kReportInterval_ = 0.1;
+    static const double kReportInterval_;
 
     // Computed word vectors.
     unordered_map<string, Eigen::VectorXd> wordvectors_;
@@ -293,41 +291,43 @@ private:
     string output_directory_;
 
     // If a word type appears <= this number, treat it as a rare symbol.
-    size_t rare_cutoff_ = 1;
+    size_t rare_cutoff_;
 
     // Have a sentence per line in the text corpus?
-    bool sentence_per_line_ = false;
+    bool sentence_per_line_;
 
     // Size of the context to compute covariance on. Note that it needs to be
     // odd if we want the left and right context to have the same length.
-    size_t window_size_ = 3;
+    size_t window_size_;
 
     // Context definition.
-    string context_definition_ = "bag";
+    string context_definition_;
 
     // Target dimension of word vectors.
     size_t dim_;
 
     // Data transformation method.
-    string transformation_method_ = "raw";
+    string transformation_method_;
 
     // Scaling method.
-    string scaling_method_ = "cca";
+    string scaling_method_;
 
     // Number of context types to hash (0 means no hashing).
-    size_t num_context_hashed_ = 0;
+    size_t num_context_hashed_;
 
     // Pseudocount for smoothing.
-    size_t pseudocount_ = 0;
+    size_t pseudocount_;
 
     // Context smoothing exponent.
-    double context_smoothing_exponent_ = 0.75;
+    double context_smoothing_exponent_;
 
     // Singular value exponent.
-    double singular_value_exponent_ = 0.0;
+    double singular_value_exponent_;
 
     // Print messages to stderr?
-    bool verbose_ = true;
+    bool verbose_;
+
+	void initMembers();
 };
 
 #endif  // WORDREP_H

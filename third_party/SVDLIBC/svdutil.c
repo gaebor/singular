@@ -37,7 +37,15 @@ POSSIBILITY OF SUCH DAMAGE.
 #include <math.h>
 #include <sys/types.h>
 #include <sys/stat.h>
-#include <netinet/in.h>
+
+#ifdef _MSC_VER
+#	include <WinSock2.h>
+#define popen _popen
+#define pclose _pclose
+#else
+#	include <netinet/in.h>
+#endif
+
 #include "svdlib.h"
 #include "svdutil.h"
 
@@ -230,7 +238,6 @@ void svd_closeFile(FILE *file) {
   else fclose(file);
 }
 
-
 char svd_readBinInt(FILE *file, int *val) {
   int x;
   if (fread(&x, sizeof(int), 1, file) == 1) {
@@ -241,6 +248,10 @@ char svd_readBinInt(FILE *file, int *val) {
 }
 
 /* This reads a float in network order and converts to a real in host order. */
+/************************************************************************/
+/* You gotta be kiddin' me!                                             */
+/* This is so not how you convert a float to network byte order!        */
+/************************************************************************/
 char svd_readBinFloat(FILE *file, float *val) {
   int x;
   float y;
